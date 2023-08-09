@@ -1,0 +1,30 @@
+{
+  "data": [
+    {
+      "id": 1,
+      "brand": "test",
+      "model": "test",
+      "option": "256gb black",
+      "serial": 1134611,
+      "cost_price": 50000,
+      "commission": 15000,
+      "sale_price": 100000,
+      "currency": "USD",
+      "cover_img": "testtest",
+      "recommended": "blob:test"
+    },
+    {
+      "brand": "General Mobile",
+      "model": "GM20",
+      "option": "512gb blue",
+      "serial": "3463463",
+      "cost_price": 10000,
+      "commission": 1000,
+      "sale_price": 50000,
+      "currency": "EUR",
+      "cover_img": "blob:http://localhost:3001/b9676f3a-65ea-4fa5-ae67-cd5c7b171b31",
+      "recommended": true,
+      "id": 2
+    }
+  ]
+}
