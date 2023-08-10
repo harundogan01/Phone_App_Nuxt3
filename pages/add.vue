@@ -19,7 +19,6 @@
   
   <v-text-field
   v-model="state.phone_model"
-  :error-messages="v$.phone_model.$errors.map(e => e.$message)"
         label="Model"
         required
         @input="v$.phone_model.$touch"
@@ -39,7 +38,7 @@
       <v-text-field
       v-model="state.product_code"
       :error-messages="v$.product_code.$errors.map(e => e.$message)"
-        label="Product Code"
+        label="Product code"
         required
         @input="v$.product_code.$touch"
         @blur="v$.product_code.$touch"
@@ -54,11 +53,11 @@
             @change="v$.selected_currency.$touch"
             @blur="v$.selected_currency.$touch"
           ></v-select>
-  
+
       <v-text-field
         v-model="state.cost_price"
         :error-messages="v$.cost_price.$errors.map(e => e.$message)"
-        label="Cost Price"
+        label="Cost price"
         type="number"
         required
         @input="v$.cost_price.$touch"
@@ -68,7 +67,7 @@
       <v-text-field
         v-model="state.commission"
         :error-messages="v$.commission.$errors.map(e => e.$message)"
-        label="Seller Commission"
+        label="Seller commission"
         type="number"
         required
         @input="v$.commission.$touch"
@@ -78,7 +77,7 @@
       <v-text-field
         v-model="state.sale_price"
         :error-messages="v$.sale_price.$errors.map(e => e.$message)"
-        label="Sale Price"
+        label="Sale price"
         type="number"
         required
         @input="v$.sale_price.$touch"
@@ -88,7 +87,7 @@
       <v-file-input 
         v-model="state.photo"
         :error-messages="v$.photo.$errors.map(e => e.$message)"
-        label="Upload Photo" 
+        label="Upload a photo" 
         accept="image/*" 
         required
         @change="previewImage()"
@@ -101,12 +100,12 @@
           <v-text-field
           v-model="state.photo_url"
           readonly
-        label="Photo Url"
+        label="Photo url"
       ></v-text-field>   
       </template>
       <v-checkbox
         v-model="state.is_recommended"
-        label="Recommended Product"
+        label="Recommended product"
         type="checkbox"
       ></v-checkbox>
   
@@ -131,14 +130,16 @@
   
   <script setup>
   import axios from "axios"
+  import { useToast } from "vue-toastification";
   import { useVuelidate } from '@vuelidate/core'
   import { required, minLength } from '@vuelidate/validators'
   import { reactive, computed } from "vue"
   import brands from "~/js/brands.js"
   import options from "~/js/options.js"
   import currencies from "~/js/currencies.js"
-    const initialState = {
-      selected_brand: '',
+    const initialState = [
+      {
+        selected_brand: '',
       selected_option: '',
       product_code: '',
       cost_price: 0,
@@ -151,7 +152,9 @@
       photo_url: '',
       is_recommended: false,
       selected_currency: ''
-  }
+      }
+    ]
+  const toast = useToast();
 
   const resetPhotoField = computed(() => {
     // Note: we are using destructuring assignment syntax here.
@@ -206,10 +209,10 @@
                   recommended: state.is_recommended
                 })
                 .then(response => {
-                  alert('Phone successfully added!')
+                  toast.success("Phone successfully added!", { timeout: 2000 })
                 })
-                .catch((err) => {
-                  alert(err.message)
+                .catch(() => {
+                  toast.success("Something went wrong! Please try again.", { timeout: 2000 })
                 })
                 resetForm()
     }
@@ -217,7 +220,7 @@
     const resetForm = () => {
       v$.value.$reset()
       
-      for (const [key, value] of Object.entries(initialState)) {
+      for (const [key, value] of Object.entries(initialState[0])) {
         state[key] = value
       }
     }

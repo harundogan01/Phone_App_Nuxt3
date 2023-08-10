@@ -15,6 +15,7 @@
 
 <script setup>
 import { onBeforeMount, reactive } from "vue"
+import { POSITION, useToast } from "vue-toastification";
 import axios from "axios"
 const data = {
     no_data: '',
@@ -23,6 +24,7 @@ const data = {
 const state = reactive({
     ...data
 })
+const toast = useToast();
 const phones = onBeforeMount(() => {
     axios.get('http://localhost:3000/data')
     .then((response) => {
@@ -33,7 +35,6 @@ const phones = onBeforeMount(() => {
             data.file.push(val)
            })
         }
-        console.log("Data: ", data.file)
     })
     
 })
@@ -49,6 +50,7 @@ const downloadFile = () =>{
           link.click();
 
           URL.revokeObjectURL(url);
+          toast.success("File download completed successfully.", { timeout: 3000, position: POSITION.TOP_CENTER });
 }
 </script>
 
