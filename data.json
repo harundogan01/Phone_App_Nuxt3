@@ -12,6 +12,19 @@
       "currency": "USD",
       "cover_img": "testtest",
       "recommended": "blob:test"
+    },
+    {
+      "brand": "Apple",
+      "model": "Iphone 15 Pro Plus",
+      "option": "512gb black",
+      "serial": "44636636",
+      "cost_price": 2526262,
+      "commission": 2525,
+      "sale_price": 46363636,
+      "currency": "PLN",
+      "cover_img": "blob:http://localhost:3000/e9320dd8-65db-4937-af0b-a5546ebf9cb8",
+      "recommended": true,
+      "id": 2
     }
   ]
 }

@@ -215,7 +215,7 @@ const submitForm = () => {
       toast.success("Phone successfully added!", { timeout: 2000 });
     })
     .catch(() => {
-      toast.success("Something went wrong! Please try again.", {
+      toast.error("Something went wrong! Please try again.", {
         timeout: 2000,
       });
     });
